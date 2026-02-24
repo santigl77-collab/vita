@@ -4,48 +4,77 @@
 <meta charset="UTF-8">
 <title>Vita ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
 <style>
 
 body{
   margin:0;
   height:100vh;
+  width:100vw;
+  overflow:hidden;
+  font-family: 'Montserrat', sans-serif;
+  background:black;
+}
+
+/* FOTO FONDO PANTALLA COMPLETA */
+.fondo{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:1;
+  filter: brightness(0.6);
+}
+
+/* CAPA ENCIMA */
+.contenido{
+  position:relative;
+  z-index:2;
+  height:100%;
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  font-family: Arial, sans-serif;
-  overflow:hidden;
-}
-
-.contenedor{
   text-align:center;
   color:white;
+  padding:20px;
 }
 
-.foto{
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  object-fit:cover;
-  border:6px solid white;
-  box-shadow:0 0 30px rgba(255,255,255,0.8);
-  margin-bottom:30px;
-}
-
+/* MENSAJE PRINCIPAL */
 .mensaje{
-  font-size:60px;
-  font-weight:bold;
+  font-family: 'Great Vibes', cursive;
+  font-size:90px;
+  text-shadow:0 0 30px rgba(255,255,255,0.8);
+  animation: aparecer 2s ease;
 }
 
-.sub{
-  font-size:40px;
+/* SUBMENSAJE */
+.submensaje{
+  font-family: 'Great Vibes', cursive;
+  font-size:70px;
   margin-top:20px;
+  text-shadow:0 0 30px rgba(255,255,255,0.8);
+  animation: aparecer 3s ease;
 }
 
+/* EMOJIS FLOTANTES */
 .flotante{
   position:absolute;
-  font-size:40px;
+  font-size:60px;
   animation: flotar linear infinite;
+  z-index:3;
+}
+
+@keyframes aparecer{
+  from{
+    opacity:0;
+    transform:translateY(50px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 @keyframes flotar{
@@ -62,44 +91,46 @@ body{
 </style>
 
 </head>
+
 <body>
 
-<div class="contenedor">
+<!-- FOTO COMO FONDO -->
+<img src="IMG_3083.jpeg" class="fondo">
 
-  <!-- CAMBIA ESTE LINK POR TU FOTO -->
-  <img class="foto" src="https://i.imgur.com/yourphoto.jpg">
+<!-- TEXTO -->
+<div class="contenido">
 
-  <div class="mensaje">
-    ¿Qué está haciendo la reina de la casha? 👑❤️
-  </div>
+<div class="mensaje">
+¿Qué está haciendo la reina de la casha? 👑
+</div>
 
-  <div class="sub">
-    Vita la más hermosha 🌻🐱❤️
-  </div>
+<div class="submensaje">
+Vita la más hermosha 🌻
+</div>
 
 </div>
 
 <script>
 
-const emojis = ["❤️","❤️","❤️","❤️","🌻","🐱","😻","💖","💕"];
+const emojis = ["❤️","🌻","💐","❤️","🌻","💛"];
 
 function crearEmoji(){
   const emoji = document.createElement("div");
-  emoji.classList.add("flotante");
+  emoji.className = "flotante";
   emoji.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-  
+
   emoji.style.left = Math.random()*100 + "vw";
-  emoji.style.fontSize = (30 + Math.random()*50) + "px";
-  emoji.style.animationDuration = (3 + Math.random()*3) + "s";
-  
+  emoji.style.animationDuration = (6 + Math.random()*6) + "s";
+  emoji.style.fontSize = (50 + Math.random()*50) + "px";
+
   document.body.appendChild(emoji);
 
   setTimeout(()=>{
     emoji.remove();
-  },6000);
+  },12000);
 }
 
-setInterval(crearEmoji, 200);
+setInterval(crearEmoji, 400);
 
 </script>
 
